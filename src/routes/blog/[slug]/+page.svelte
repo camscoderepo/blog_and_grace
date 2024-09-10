@@ -7,7 +7,7 @@
     export const load: Load = async ({ params }) => {
       const { slug } = params;
       try {
-        const response = await fetch(`/api/blogs/${slug}`);
+        const response = await fetch(`api/blogs/${slug}`);
         if (!response.ok) throw new Error('Failed to fetch blog');
         const blog: Blog = await response.json();
         return { props: { blog } };
