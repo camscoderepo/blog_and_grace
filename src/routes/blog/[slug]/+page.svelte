@@ -3,7 +3,7 @@
     export let blog: Blog | null;
     
     import type { Load } from '@sveltejs/kit';
-    import type { Blog } from '$types'; // Adjust the path as needed
+    import type { Blog } from '../../../types'; // Adjust the path as needed
     export const load: Load = async ({ params }) => {
       const { slug } = params;
       try {
