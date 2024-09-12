@@ -1,6 +1,11 @@
 <!-- src/routes/blog.svelte -->
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
+
+    const navigateToBlog = () => {
+      goto('/blog/${slug}')
+    }
 
     interface Blog {
     slug: string;
@@ -8,6 +13,8 @@
     content: string;
   }
   let blogs: Blog[] = [];
+
+  
   
   onMount(async () => {
     try {
@@ -24,11 +31,11 @@
   
   <div class="max-w-4xl mx-auto p-4 grid grid-cols-1 md:grid-cols-1 gap-6">
     {#each blogs as blog}
-      <div class="bg-white p-6 rounded-lg shadow-lg">
+      <button on:click={navigateToBlog} class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold mb-2">{blog.title}</h2>
         <p class="text-gray-600 mb-4">{blog.date}</p>
         <p class="text-gray-700">{blog.excerpt}</p>
-      </div>
+      </button>
     {/each}
   </div>
   

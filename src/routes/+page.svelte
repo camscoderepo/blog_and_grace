@@ -1,5 +1,5 @@
 <!-- src/routes/+page.svelte -->
-<script>
+<script lang="ts">
     import Navbar from '../components/Navbar.svelte';
     import Footer from '../components/Footer.svelte';
     import Blog from './blog.svelte';
