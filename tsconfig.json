@@ -13,7 +13,7 @@
 		"$types": ["src/types.d.ts"]
 	  }
 	},
-	"include": ["src/**/*.ts", "src/**/*.svelte"],
+	"include": ["src/**/*","src/**/*.ts", "src/**/*.svelte"],
 	"exclude": ["node_modules"]
   }
   

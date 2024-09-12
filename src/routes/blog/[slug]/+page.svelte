@@ -4,6 +4,7 @@
     
     import type { Load } from '@sveltejs/kit';
     import type { Blog } from '../../../types'; // Adjust the path as needed
+
     export const load: Load = async ({ params }) => {
       const { slug } = params;
       try {
@@ -16,14 +17,26 @@
         return { props: { blog: null } };
       }
     };
+
+    
   </script>
+
+<script lang="ts">
+  import { onMount } from 'svelte';
+
+  let blog: Blog | null = null;
+
+  onMount(() => {
+    console.log('Blog:', blog);
+  });
+</script>
   
 
   {#if blog}
     <h1>{blog.title}</h1>
-    <p>{blog.date}</p>
     <div>{blog.content}</div>
   {:else}
-    <p>Blog not found.</p>
+    <p>Blog not here...</p>
+   
   {/if}
   

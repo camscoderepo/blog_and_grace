@@ -5,7 +5,7 @@
     interface Blog {
     slug: string;
     title: string;
-    excerpt: string;
+    content: string;
   }
   let blogs: Blog[] = [];
   
@@ -27,7 +27,7 @@
     <a href={`/blog/${blog.slug}`}>
       <h2>{blog.title}</h2>
     </a>
-    <p>{blog.excerpt}</p>
+    <p>{blog.content}</p>
   </div>
 {/each}
   
