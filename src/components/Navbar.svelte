@@ -7,10 +7,10 @@
     /* Add any custom styles here */
   </style>
   
-  <nav class=" p-4 z-20 fixed top-0 w-full left-0 right-0">
-    <div class="container mx-auto flex justify-between items-center">
-        <div>Blog and Grace</div>
-        <button>click me</button>
-    </div>
+  <nav class="bg-gray-800 p-4">
+    <ul class="flex justify-center space-x-4">
+      <li><a href="/" class="text-white hover:text-gray-400">Home</a></li>
+      <li><a href="/blog" class="text-white hover:text-gray-400">Blog</a></li>
+      <li><a href="/profile" class="text-white hover:text-gray-400">Profile</a></li>
+    </ul>
   </nav>
-  
