@@ -2,6 +2,7 @@
 <script lang="ts">
     import { LightSwitch } from '@skeletonlabs/skeleton'
     export let slug: string;
+    console.log(slug);
   </script>
   
   <style>
