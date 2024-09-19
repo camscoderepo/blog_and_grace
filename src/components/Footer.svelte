@@ -1,5 +1,5 @@
 <!-- src/components/Footer.svelte -->
-<script>
+<script lang="ts">
     // Add any necessary script here
   </script>
   
