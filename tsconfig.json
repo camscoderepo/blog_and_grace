@@ -10,6 +10,8 @@
 	  "forceConsistentCasingInFileNames": true,
 	  "baseUrl": ".",
 	  "paths": {
+		"$lib/*": ["src/lib/*"],
+		"$routes/*": ["src/routes/*"],
 		"$types": ["src/types.d.ts"]
 	  }
 	},
