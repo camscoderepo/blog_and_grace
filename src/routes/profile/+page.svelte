@@ -1,5 +1,5 @@
 <!-- src/routes/profile/+page.svelte -->
-<script lang="ts">
+<script>
     import { userStore } from '../../stores/userStore'; // Adjust the path as needed
     import { onDestroy } from 'svelte';
     let user;
