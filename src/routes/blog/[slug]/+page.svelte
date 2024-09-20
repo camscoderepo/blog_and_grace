@@ -1,16 +1,7 @@
-<script context="module" lang="ts">
+<script lang="ts">
     //Declare blog as a prop
-
-    import type { Load } from '@sveltejs/kit';
-    import type { Blog } from '../../../types'; // Adjust the path as needed
-    
-    let blog: Blog;
-    
-
-    export const load: Load = async ( ) => {
-
-    }
-    
+  export let data;  // Data from load function in +page.ts
+  const { blog } = data;  // Extract blog from data
   </script>
 
 
@@ -22,7 +13,7 @@
     <div>{blog.date}</div>
     <p>{blog.excerpt}</p>
   {:else}
-    <p>Blog not here...</p>
+    <p>Blog will be here...</p>
    
   {/if}
   

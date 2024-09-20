@@ -19,3 +19,4 @@ export const fetchBlogs = async () => {
         console.error('Error fetching blogs:', error);
     }
 };
+
