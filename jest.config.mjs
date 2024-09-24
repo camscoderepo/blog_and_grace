@@ -3,15 +3,27 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
 
-const config: Config = {
+
+const config = {
+  preset: 'ts-jest', // Add this line to use ts-jest for TypeScript support
+  testEnvironment: "jest-environment-node", // or "jsdom" for frontend code
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-
+  transform: {
+    '^.+\\.svelte$': ['svelte-jester', { "preprocess": true }], // Use svelte-jester for Svelte files
+    '^.+\\.ts$': 'ts-jest' // Add ts-jest for TypeScript
+  },
   // Stop running tests after `n` failures
   // bail: 0,
+  extensionsToTreatAsEsm: ['.ts', '.svelte'],  // Treat TS and Svelte as ESM
+  globals: {
+    'ts-jest': {
+      useESM: true,  // Enable ESM in ts-jest
+    },
+  },
 
+  moduleFileExtensions: ['js', 'ts', 'svelte'],
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\camro\\AppData\\Local\\Temp\\jest",
 
@@ -26,7 +38,7 @@ const config: Config = {
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
-
+  
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
   //   "\\\\node_modules\\\\"

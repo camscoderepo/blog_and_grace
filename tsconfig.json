@@ -1,7 +1,8 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
-	  "target": "es6",
+	  "verbatimModuleSyntax": false,
+	  "target": "esnext",
 	  "module": "esnext",
 	  "moduleResolution": "node",
 	  "strict": true,
@@ -10,13 +11,14 @@
 	  "skipLibCheck": true,
 	  "forceConsistentCasingInFileNames": true,
 	  "baseUrl": ".",
+	  
 	  "paths": {
 		"$lib/*": ["src/lib/*"],
 		"$routes/*": ["src/routes/*"],
 		"$types": ["@sveltejs/kit","src/types.d.ts"]
 	  }
 	},
-	"include": ["src/**/*","src/**/*.ts", "src/**/*.svelte"],
+	"include": ["src/**/*",  "__tests__/**/*.ts","src/**/*.ts", "src/**/*.svelte", "jest.config.mjss"],
 	"exclude": ["node_modules"]
   }
   
