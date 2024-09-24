@@ -10,7 +10,10 @@ const config = {
   testEnvironment: "jest-environment-node", // or "jsdom" for frontend code
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-  
+  transform: {
+    '^.+\\.svelte$': ['svelte-jester', { "preprocess": true }], // Use svelte-jester for Svelte files
+    '^.+\\.ts$': 'ts-jest' // Add ts-jest for TypeScript
+  },
   // Stop running tests after `n` failures
   // bail: 0,
   extensionsToTreatAsEsm: ['.ts', '.svelte'],  // Treat TS and Svelte as ESM
@@ -19,6 +22,8 @@ const config = {
       useESM: true,  // Enable ESM in ts-jest
     },
   },
+
+  moduleFileExtensions: ['js', 'ts', 'svelte'],
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\camro\\AppData\\Local\\Temp\\jest",
 

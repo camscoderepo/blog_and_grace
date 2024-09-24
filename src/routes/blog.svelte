@@ -26,6 +26,7 @@
 
   // Optional: Fetch data on component mount
   onMount(() => {
+    console.log('Fetching blogs on mount');
     fetchBlogs(); // Only if you need to refresh the data
     
     return () => {
@@ -41,7 +42,6 @@
     {#each blogs as blog}
       <button on:click={() => navigateToBlog(blog.slug)} class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold mb-2">{blog.title}</h2>
-        <p class="text-gray-600 mb-4">{blog.date}</p>
         <p class="text-gray-700">{blog.excerpt}</p>
         <p class="text-gray-700">{blog.content}</p>
       </button>

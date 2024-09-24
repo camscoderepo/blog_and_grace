@@ -1,22 +1,29 @@
 // src/stores/blogs.ts
 import { writable } from 'svelte/store';
-
+import { supabase } from '$lib/supabaseClient';
+import type { Blog } from '../types';
 // Store to hold blog data
-export const blogStore = writable([]);
+export const blogStore = writable<Blog[]>([]);
+export const blogsError = writable('');
 
 
 // Fetch blog data and update the store
 // Fetch blog data and update the store
 export const fetchBlogs = async () => {
-    try {
-        const response = await fetch('/api/blogs'); // This should point to your API
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        blogStore.set(data); // Update the store with the data
-    } catch (error) {
-        console.error('Error fetching blogs:', error);
+    console.log('Fetching blogs...'); // Log to indicate fetch is happening
+    const { data: blog_posts, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+
+    console.log('Data:', blog_posts); // Log the data received
+    console.log('Error:', error); // Log any error received
+
+    if (error) {
+        console.error('Error loading posts:', error);
+        blogsError.set('Error loading posts');
+    } else {
+        blogStore.set(blog_posts); // Update the store with fetched posts
     }
 };
+
 
