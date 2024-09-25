@@ -13,6 +13,7 @@
 	  "baseUrl": ".",
 	  
 	  "paths": {
+		"$stores/*": ["src/stores/*"],
 		"$lib/*": ["src/lib/*"],
 		"$routes/*": ["src/routes/*"],
 		"$types": ["@sveltejs/kit","src/types.d.ts"]
