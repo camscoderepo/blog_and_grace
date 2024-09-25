@@ -6,8 +6,7 @@ import type { Blog } from '../types';
 export const blogStore = writable<Blog[]>([]);
 export const blogsError = writable('');
 
-const email = 'cameron.roman@icloud.com'; // Replace with your user email
-const password = 'Gassiestpancho30!!'; // Replace with your user password
+
 
 const signIn = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
