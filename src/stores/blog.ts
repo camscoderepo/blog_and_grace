@@ -8,23 +8,23 @@ export const blogsError = writable('');
 
 
 
-const signIn = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-    });
+// const signIn = async () => {
+//     const { data, error } = await supabase.auth.signInWithPassword({
+//         email,
+//         password,
+//     });
 
-    if (error) {
-        console.error('Sign-in error:', error);
-        return;
-    }
+//     if (error) {
+//         console.error('Sign-in error:', error);
+//         return;
+//     }
 
-    console.log('Signed in user:', data);
-    // Now you can fetch blogs or perform other actions
-    fetchBlogs();
-};
+//     console.log('Signed in user:', data);
+//     // Now you can fetch blogs or perform other actions
+//     fetchBlogs();
+// };
 
-signIn();
+// signIn();
 
 
 
