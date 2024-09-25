@@ -1,5 +1,5 @@
 <!-- src/lib/components/BlogPost.svelte -->
-<script lang="ts">
+<!-- <script lang="ts">
     export let post: {
       title: string;
       date?: string;
@@ -31,4 +31,4 @@
     {/if}
     <p class="excerpt">{post.excerpt}</p>
   </div>
-  
+   -->
