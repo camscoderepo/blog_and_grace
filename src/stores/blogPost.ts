@@ -6,11 +6,11 @@ import type { Blog } from '../types';
 export const blogPostStore = writable<Blog | null>(null);
 export const blogPostError = writable('');
 
-export async function fetchBlogBySlug(slug: string) {
+export async function fetchBlogByContent(content: string) {
     const { data, error } = await supabase
       .from('blog_posts') // Make sure this matches your table name
-      .select('title, content, created_at') // Specify the fields you want to return
-      .eq('slug', slug)
+      .select('*')
+      .eq('content', content) // Specify the fields you want to return
       .single(); // Fetch a single blog post by slug
   
     if (error) {

@@ -1,11 +1,23 @@
 <script>
+  import { supabase } from "$lib/supabaseClient";
     let email = '';
     let password = '';
+    let error = '';
   
-    const handleLogin = (event) => {
-      event.preventDefault();
-      // Handle login logic here
-      console.log('Login:', email, password);
+    const handleLogin = async () => {
+      error = '';
+
+      const { data, error: loginError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+      if (loginError) {
+        error = loginError.message;
+      } else {
+        // Redirect to profile or dashboard after login
+        window.location.href = '/profile'; // Adjust path as needed
+      }
     };
   </script>
   
@@ -48,9 +60,9 @@
     <h2>Login</h2>
     <form on:submit|preventDefault={handleLogin}>
       <div class="form-group">
-        <label for="login-email">Email</label>
+        <label for="email">Email</label>
         <input
-          id="login-email"
+          id="email"
           type="email"
           placeholder="Enter your email"
           bind:value={email}
@@ -58,9 +70,9 @@
         />
       </div>
       <div class="form-group">
-        <label for="login-password">Password</label>
+        <label for="password">Password</label>
         <input
-          id="login-password"
+          id="password"
           type="password"
           placeholder="Enter your password"
           bind:value={password}

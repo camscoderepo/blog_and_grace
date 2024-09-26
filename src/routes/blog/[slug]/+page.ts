@@ -1,14 +1,14 @@
 import type { Load } from '@sveltejs/kit'; // Import the Load type
 // import type { Blog } from '../../../types';
-import { fetchBlogBySlug } from '../../../stores/blogPost';
+import { fetchBlogByContent } from '../../../stores/blogPost';
 
 // Load function to fetch the blog post
 export const load: Load = async ({ params }) => {
-  const { slug } = params as { slug: string, title: string, content: string };
+  const { content } = params as {  content: string };
 
-  console.log('Slug:', slug);
+  console.log('Slug:', content);
   // Fetch blog data based on the slug
-    const response = await fetchBlogBySlug(slug)
+    const response = await fetchBlogByContent(content)
     if (!response) {
       return { status: 404, error: 'Blog post not found' }; // Handle the error case
   }
