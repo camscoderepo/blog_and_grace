@@ -1,12 +1,29 @@
 <script>
+  import { supabase } from "$lib/supabaseClient";
+
     let email = '';
     let password = '';
-  
-    const handleSignup = (event) => {
-      event.preventDefault();
-      // Handle signup logic here
-      console.log('Signup:', email, password);
+    let error = '';
+    let successMessage = '';
+
+
+    const handleSignup = async () => {
+      error = '';
+      successMessage = '';
+
+      const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (signUpError) {
+      error = signUpError.message;
+    } else {
+      successMessage = "Signup successful! Check your email for confirmation.";
+    }
+    
     };
+
   </script>
   
   <style>
@@ -48,9 +65,9 @@
     <h2>Sign Up</h2>
     <form on:submit|preventDefault={handleSignup}>
       <div class="form-group">
-        <label for="signup-email">Email</label>
+        <label for="email">Email</label>
         <input
-          id="signup-email"
+          id="email"
           type="email"
           placeholder="Enter your email"
           bind:value={email}
@@ -58,9 +75,9 @@
         />
       </div>
       <div class="form-group">
-        <label for="signup-password">Password</label>
+        <label for="password">Password</label>
         <input
-          id="signup-password"
+          id="password"
           type="password"
           placeholder="Enter your password"
           bind:value={password}
@@ -71,3 +88,11 @@
     </form>
   </div>
   
+
+  {#if error}
+  <p style="color: red;">{error}</p>
+  {/if}
+
+  {#if successMessage}
+    <p style="color: green;">{successMessage}</p>
+  {/if}
