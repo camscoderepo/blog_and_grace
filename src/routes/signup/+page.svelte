@@ -1,5 +1,6 @@
 <script>
   import { supabase } from "$lib/supabaseClient";
+  import { signUp } from "$stores/userStore";
 
     let email = '';
     let password = '';
@@ -8,19 +9,7 @@
 
 
     const handleSignup = async () => {
-      error = '';
-      successMessage = '';
-
-      const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    if (signUpError) {
-      error = signUpError.message;
-    } else {
-      successMessage = "Signup successful! Check your email for confirmation.";
-    }
+     await signUp(email, password);
     
     };
 

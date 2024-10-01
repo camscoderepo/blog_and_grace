@@ -1,23 +1,12 @@
 <script>
   import { supabase } from "$lib/supabaseClient";
+  import { logIn } from "$stores/userStore";
     let email = '';
     let password = '';
     let error = '';
   
     const handleLogin = async () => {
-      error = '';
-
-      const { data, error: loginError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-      if (loginError) {
-        error = loginError.message;
-      } else {
-        // Redirect to profile or dashboard after login
-        window.location.href = '/profile'; // Adjust path as needed
-      }
+      await logIn(email, password);
     };
   </script>
   
