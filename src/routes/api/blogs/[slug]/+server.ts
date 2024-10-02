@@ -1,20 +1,24 @@
 // src/routes/api/blogs/[slug]/+server.ts
+// src/routes/api/blogs/[slug]/+server.ts
 import { json } from '@sveltejs/kit';
+import { supabase } from '$lib/supabaseClient'; // Adjust the import path if necessary
 
+// Define the Post type according to your database structure
 
-const blogPosts = [
-  { slug: 'first-post', title: 'First Post', date: '2022-01-01', excerpt: 'This is the first post.', content: 'Content of the first post.' },
-  { slug: 'second-post', title: 'Second Post', date: '2022-02-01', excerpt: 'This is the second post.', content: 'Content of the second post.' },
-];
+export async function GET({ params }: { params: { content: string } }) {
+  const { content } = params;
 
-  // Replace this with actual data fetching logic
-  export async function GET({ params }) {
-    const { slug } = params;
-    const blogPost = await blogPosts.find(post => post.slug === slug) || null; // Replace this with your actual data fetching logic(slug);
-  
-    if (!blogPost) {
-      return json({ error: 'Blog post not found' }, { status: 404 });
-    }
-  
-    return json(blogPost);
+  // Fetching the blog post from Supabase
+  const { data: blogPost, error } = await supabase
+    .from('blog_posts') // Replace 'posts' with your actual table name in Supabase
+    .select('*')
+    .eq('content', content)
+    .maybeSingle(); // Use .single() to fetch one record
+
+  // Error handling
+  if (error || !blogPost) {
+    return json({ error: 'Blog post not found' }, { status: 404 });
   }
+
+  return json(blogPost);
+}

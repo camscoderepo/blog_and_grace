@@ -1,11 +1,7 @@
 // src/routes/api/blogs/+server.ts
 import type { RequestHandler } from  '@sveltejs/kit';
 
-// Sample data or replace this with fetching from a database
-const blogs = [
-    { slug: 'first-post', title: 'First Post', date: '2022-01-01', excerpt: 'This is the excerpt of the first post', content: 'This is the content of the first post' },
-    { slug: 'second-post', title: 'Second Post', content: 'This is the content of the second post', date: '2022-01-02', excerpt: 'This is the excerpt of the second post' }
-];
+
 
 // Handle GET request
 export const GET: RequestHandler = async ({ url }) => {
