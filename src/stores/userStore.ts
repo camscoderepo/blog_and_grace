@@ -1,12 +1,19 @@
 // src/stores/userStore.ts
 import { writable } from 'svelte/store';
 import { supabase } from '$lib/supabaseClient';
+import { browser } from '$app/environment';
 import type { SignInWithOAuthCredentials, User } from '@supabase/supabase-js';
 import { goto } from '$app/navigation';
 
 export const userStore = writable<User | null>(null);
 export const userError = writable<string | null>(null);
-export const username = writable<string | null>(localStorage.getItem('username') || null);
+export const username = writable(browser && localStorage.getItem('username') || null);
+
+username.subscribe((val) => {
+    if (browser && val) {
+        localStorage.setItem('username', val);
+    }
+});
 
 export const randomUsername = () => {
     const names = ['User123', 'Guest456', 'Anon789'];
